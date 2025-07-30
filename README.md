@@ -1,67 +1,74 @@
+# 🌤️ Weather Data ETL Pipeline using Apache Airflow & PostgreSQL
 
-
-```markdown
-# 🌦️ Weather Data Pipeline with Apache Airflow
-
-This project automates the process of fetching current weather data using the Open-Meteo API and stores it in a PostgreSQL database. Built with Apache Airflow, it showcases a simple ETL (Extract, Transform, Load) pipeline using the TaskFlow API.
+This project automates the process of fetching live weather data from an API, processes it, and stores it in a PostgreSQL database. It is built using **Apache Airflow**, set up locally with the help of the **Astro CLI**.
 
 ---
 
-## 📁 Project Structure
+## 📌 What This Project Does
 
-```
-
-.
-├── dags/
-│   └── weather\_etl\_pipeline.py    # The DAG that runs the ETL process
-├── docker-compose.yaml            # Docker config to run Airflow locally
-├── requirements.txt               # Python dependencies for Airflow and providers
-└── README.md                      # You're here!
-
-````
+- Fetches current weather data (like temperature, wind speed, etc.) for London
+- Processes and organizes the data
+- Stores it in a PostgreSQL database
+- Automatically runs this flow every day using Airflow
+- You can view and query the data live in DBeaver
 
 ---
 
-## 🧠 What It Does
+## 🧰 Tools Used
 
-The DAG (`weather_etl_pipeline`) performs the following steps daily:
-
-1. **Extract**: Fetches current weather data for London from the Open-Meteo API using `HttpHook`.
-2. **Transform**: Extracts key fields like temperature, wind speed, wind direction, and weather code.
-3. **Load**: Inserts the cleaned data into a PostgreSQL table called `weather_data`.
-
----
-
-## 🔧 Tech Stack
-
-- **Apache Airflow** (v2.9+)
-- **PostgreSQL**
-- **Open-Meteo API**
-- **Python**
-- **Docker + Docker Compose**
+- [Apache Airflow](https://airflow.apache.org/)
+- [Astro CLI](https://docs.astronomer.io/astro/cli)
+- PostgreSQL
+- Docker
+- DBeaver (for viewing the database)
+- Open-Meteo API (for weather data)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Setup Instructions
 
-### 1. Clone the Repository
+### 1. Install Astro CLI
+
+Follow [Astro CLI Installation Guide](https://www.astronomer.io/docs/astro/cli/install-cli)
+
+Or simply run:
 
 ```bash
-git clone https://github.com/your-username/weather-airflow-pipeline.git
-cd weather-airflow-pipeline
-````
+brew install astro
+💡 If brew is not found, you’ll need to install Homebrew.
 
-### 2. Start Airflow Locally
+2. Initialize Astro Project
+bash
+Copy
+Edit
+astro dev init
+This creates a basic Airflow project structure.
 
-Make sure Docker is running, then:
+3. Add Your DAG
+Create a new file inside the dags/ folder:
 
-```bash
-docker compose up --build
-```
+Copy
+Edit
+etlweather.py
+Paste your DAG code here. (Full code is available in this repo.)
 
-This will start the following services:
+4. Create docker-compose.override.yml (if needed)
+Only if you want to override ports or customize your containers.
 
-* **Airflow Webserver** at [localhost:8080](http://localhost:8080)
+5. Start the Project
+bash
+Copy
+Edit
+astro dev start
+🪐 This will start Docker containers with:
+
+Airflow Web UI at localhost:8080
+
+PostgreSQL at localhost:5432 (internal host name used in Airflow)
+
+
+
+------------------------
 * **PostgreSQL** at `localhost:5432`
 
 ### 3. Access Airflow UI
