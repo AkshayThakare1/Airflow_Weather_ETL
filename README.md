@@ -112,11 +112,13 @@ Password: airflow (or your configured password)
 
 You’ll now see the table named weather_data.
 
-### 🔍 Live Weather Data in Action
+#### 🔍 Live Weather Data in Action
 Once the DAG is triggered, weather data (temperature, windspeed, etc.) is automatically pulled from the Open-Meteo API and added to your PostgreSQL database. You can view this live in DBeaver.
 
+---------------------------
+
 ### 📸 Screenshot
-Add a screenshot of your DAG in Airflow or table in DBeaver here.
+
 
 ---------------------------
 
