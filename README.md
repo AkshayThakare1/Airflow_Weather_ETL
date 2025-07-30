@@ -33,22 +33,17 @@ Follow [Astro CLI Installation Guide](https://www.astronomer.io/docs/astro/cli/i
 
 Or simply run:
 
-```bash
+
 brew install astro
 💡 If brew is not found, you’ll need to install Homebrew.
 
-2. Initialize Astro Project
-bash
-Copy
-Edit
+###  2. Initialize Astro Project
+
 astro dev init
 This creates a basic Airflow project structure.
 
-3. Add Your DAG
+###  3. Add Your DAG
 Create a new file inside the dags/ folder:
-
-Copy
-Edit
 etlweather.py
 Paste your DAG code here. (Full code is available in this repo.)
 
