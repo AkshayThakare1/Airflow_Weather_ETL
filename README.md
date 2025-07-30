@@ -68,7 +68,7 @@ Username: admin
 Password: admin
 
 ### 7. Set Up Airflow Connections
-## 7.1 PostgreSQL Connection:
+#### 7.1 PostgreSQL Connection:
 Go to Admin > Connections > + Add
 
 Conn Id: postgres_default
@@ -83,7 +83,7 @@ Schema: postgres
 
 Login/Password: (leave default or set as per your Docker config)
 
-## 7.2 API Connection:
+#### 7.2 API Connection:
 Conn Id: open_meteo_api
 
 Conn Type: HTTP
@@ -115,7 +115,7 @@ You’ll now see the table named weather_data.
 ### 🔍 Live Weather Data in Action
 Once the DAG is triggered, weather data (temperature, windspeed, etc.) is automatically pulled from the Open-Meteo API and added to your PostgreSQL database. You can view this live in DBeaver.
 
-### 📸 Screenshot (Optional)
+### 📸 Screenshot
 Add a screenshot of your DAG in Airflow or table in DBeaver here.
 
 ---------------------------
