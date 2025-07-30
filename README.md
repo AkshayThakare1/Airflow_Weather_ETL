@@ -47,13 +47,11 @@ Create a new file inside the dags/ folder:
 etlweather.py
 Paste your DAG code here. (Full code is available in this repo.)
 
-4. Create docker-compose.override.yml (if needed)
+### 4. Create docker-compose.override.yml (if needed)
 Only if you want to override ports or customize your containers.
 
-5. Start the Project
-bash
-Copy
-Edit
+### 5. Start the Project
+
 astro dev start
 🪐 This will start Docker containers with:
 
@@ -61,21 +59,66 @@ Airflow Web UI at localhost:8080
 
 PostgreSQL at localhost:5432 (internal host name used in Airflow)
 
+### 6. Log in to Airflow
+Go to: http://localhost:8080
+Log in with:
 
+Username: admin
 
-------------------------
-* **PostgreSQL** at `localhost:5432`
+Password: admin
 
-### 3. Access Airflow UI
+### 7. Set Up Airflow Connections
+## 7.1 PostgreSQL Connection:
+Go to Admin > Connections > + Add
 
-Log in to Airflow:
+Conn Id: postgres_default
 
-* **Username:** `admin`
-* **Password:** `admin` *(or as defined in your environment variables)*
+Conn Type: Postgres
 
-Trigger the DAG named `weather_etl_pipeline`.
+Host: Find this in Docker Desktop > Postgres container > Hostname (e.g., etl-weather_postgres_1)
 
----
+Port: 5432
+
+Schema: postgres
+
+Login/Password: (leave default or set as per your Docker config)
+
+## 7.2 API Connection:
+Conn Id: open_meteo_api
+
+Conn Type: HTTP
+
+Host: https://api.open-meteo.com
+
+### 8. Trigger the DAG
+Go to the DAGs page
+
+Turn on the weather_etl_pipeline DAG
+
+Trigger it manually or wait for scheduled run
+
+### 9. Connect PostgreSQL to DBeaver
+Open DBeaver and create a new PostgreSQL connection
+
+Host: localhost
+
+Port: 5432
+
+DB: postgres
+
+Username: airflow (or your configured user)
+
+Password: airflow (or your configured password)
+
+You’ll now see the table named weather_data.
+
+### 🔍 Live Weather Data in Action
+Once the DAG is triggered, weather data (temperature, windspeed, etc.) is automatically pulled from the Open-Meteo API and added to your PostgreSQL database. You can view this live in DBeaver.
+
+### 📸 Screenshot (Optional)
+Add a screenshot of your DAG in Airflow or table in DBeaver here.
+
+---------------------------
 
 ## 🧾 PostgreSQL Table Structure
 
